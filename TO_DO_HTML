@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>To Do List App</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <div class="container">
+        <div class="todo_app">
+            <h2>ToDo List <img src="icon.png" alt=""></h2>
+            <div class="input">
+                <input type="text" id="taskInput" placeholder="Make a plan for tomorrow">
+                <button onclick="addTask()" class="add">Add</button>
+                
+            </div>
+           <ul id="taskList"></ul>
+            
+        </div>
+        
+    </div>
+    <script>
+        function addTask() {
+            var input = document.getElementById("taskInput");
+            var task = input.value;
+
+            if (task !== "") {
+                var li = document.createElement("li");
+
+                var checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.onclick = function() {
+                    li.classList.toggle("completed");
+                };
+                li.appendChild(checkbox);
+
+                var text = document.createTextNode(task);
+                li.appendChild(text);
+
+                var deleteBtn = document.createElement("button");
+                deleteBtn.innerHTML = "Delete";
+                deleteBtn.className = "delete-btn";
+                deleteBtn.onclick = function() {
+                    li.remove();
+                };
+                li.appendChild(deleteBtn);
+
+                document.getElementById("taskList").appendChild(li);
+
+                input.value = "";
+            }
+        }
+    </script>
+
+</body>
+</html>
